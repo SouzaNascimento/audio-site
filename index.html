@@ -5,24 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reprodução de Áudio</title>
     <style>
+        /* Resetando margens e padding para garantir layout consistente */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Cor de fundo */
+        }
+
         /* Estilo para o botão gigante */
         #playButton {
-            font-size: 40px;
-            padding: 20px 40px;
+            width: 100vw; /* 100% da largura da tela */
+            height: 100vh; /* 100% da altura da tela */
+            font-size: 50px; /* Tamanho grande do texto */
             color: white;
             background-color: #4CAF50;
             border: none;
-            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            text-align: center;
             transition: background-color 0.3s ease;
+            text-align: center;
         }
 
-        /* Efeito ao passar o mouse */
+        /* Efeito de hover (quando o usuário passa o mouse ou toca no botão) */
         #playButton:hover {
             background-color: #45a049;
+        }
+
+        /* Garantir que o texto do botão não ultrapasse os limites */
+        #playButton span {
+            word-wrap: break-word;
+            text-align: center;
         }
     </style>
 </head>
@@ -31,7 +49,9 @@
     <audio id="audio" src="https://raw.githubusercontent.com/souzanascimento/audio-site/main/Recording.mp3"></audio>
 
     <!-- Botão gigante de play -->
-    <button id="playButton">▶️ Reproduzir Áudio</button>
+    <button id="playButton">
+        <span>▶️ Reproduzir Áudio</span>
+    </button>
 
     <script>
         // Função para reproduzir o áudio ao clicar no botão

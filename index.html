@@ -13,44 +13,41 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* Cor de fundo */
+            background-color: #000; /* Cor de fundo preta */
         }
 
         /* Estilo para o botão gigante */
         #playButton {
             width: 100vw; /* 100% da largura da tela */
             height: 100vh; /* 100% da altura da tela */
-            font-size: 50px; /* Tamanho grande do texto */
-            color: white;
-            background-color: #4CAF50;
+            background-color: red; /* Cor de fundo vermelha */
             border: none;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            text-align: center;
         }
 
         /* Efeito de hover (quando o usuário passa o mouse ou toca no botão) */
         #playButton:hover {
-            background-color: #45a049;
+            background-color: darkred;
         }
 
-        /* Garantir que o texto do botão não ultrapasse os limites */
-        #playButton span {
-            word-wrap: break-word;
-            text-align: center;
+        /* Ajustando a imagem para que ela fique no centro do botão */
+        #playButton img {
+            width: 200px; /* Tamanho da imagem */
+            height: auto;
         }
     </style>
 </head>
 <body>
     <!-- Áudio que será tocado -->
-    <audio id="audio" src="https://raw.githubusercontent.com/souzanascimento/audio-site/main/Recording.mp3"></audio>
+    <audio id="audio" src="https://www.dropbox.com/scl/fi/0utq02oblb5a1ycvdh74q/Recording.mp3?raw=1"></audio>
 
-    <!-- Botão gigante de play -->
+    <!-- Botão gigante de play com a imagem -->
     <button id="playButton">
-        <span>▶️ Reproduzir Áudio</span>
+        <img src="frame.png" alt="Ícone de Play" />
     </button>
 
     <script>

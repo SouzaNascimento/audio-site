@@ -1,0 +1,388 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+/* Ajuste dos Personagens */
+#player {
+    position: absolute;
+    bottom: 25%;
+    right: 5%;
+    max-width: 50vw;
+    height: auto;
+    transform: scaleX(-1);
+    animation: breathing 3s ease-in-out infinite; /* Aplica a animação de respiração */
+}
+
+#enemy {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+    max-width: 25vw;
+    height: auto;
+    animation: breathing 4s ease-in-out infinite; /* Aplica a animação de respiração */
+}
+
+/* Barra de Ações */
+#action-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Linhas de Botões */
+.action-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+/* Botões de Ação */
+.action-button {
+    width: 28%;
+    height: 50px; /* Define uma altura fixa para os botões */
+    padding: 0; /* Remove o padding interno para evitar aumento de altura */
+    background-color: #f0f0f0;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #ddd;
+}
+
+/* Animação de Respiração */
+@keyframes breathing {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Aumenta 5% para simular respiração */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Barra de Status (Vida e Mana) */
+#status-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Barra de status do player */
+#player-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    order: 2; /* Inverte a ordem do player para que ele fique após o inimigo */
+}
+
+#enemy-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    order: 1; /* Inverte a ordem do inimigo para que ele fique antes do player */
+}
+
+.status-label {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Estilo das Barras de Vida e Mana */
+.bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #000;
+}
+
+/* Cor de fundo da barra de saúde e mana */
+.health-bar {
+    background-color: #ccc; /* Cor da Vida */
+}
+
+.mana-bar {
+    background-color: #ccc; /* Cor da Mana */
+}
+
+/* Cor das barras preenchidas (Vida e Mana) */
+#player-health-fill, #enemy-health-fill {
+    background-color: #ff0000; /* Cor de preenchimento da barra de saúde (vermelho para vida) */
+}
+
+#player-mana-fill, #enemy-mana-fill {
+    background-color: #0000ff; /* Cor de preenchimento da barra de mana (azul para mana) */
+}
+
+/* Barras Internas (Dinâmicas) */
+.bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; /* Inicia com 100% (vida/mana cheia) */
+    border-radius: 10px;
+    transition: width 0.3s ease; /* Animação suave ao mudar o valor */
+}
+
+
+/* Ajuste de Z-index */
+#background {
+    z-index: -1; /* Colocar o fundo atrás de tudo */
+}
+
+#player, #enemy {
+    z-index: 1;
+}
+
+#status-bar {
+    z-index: 2; /* As barras de status ficarão acima de tudo */
+}
+
+.bar-fill {
+    width: 0%;  /* Inicialmente sem preenchimento */
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Efeito de vibração da tela */
+@keyframes vibration {
+    0% {
+        transform: translateX(2px);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    50% {
+        transform: translateX(2px);
+    }
+    75% {
+        transform: translateX(-2px);
+    }
+    100% {
+        transform: translateX(2px);
+    }
+}
+
+.vibrate {
+    animation: vibration 0.2s ease infinite;
+}
+
+@keyframes flashRed {
+    0% {
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+    50% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+}
+
+.flash-red {
+    background-color: rgba(255, 0, 0, 0.5);
+    animation: flashRed 1s ease-out;
+}
+
+/* Estilo para o dano exibido */
+#damage-display {
+    position: absolute;
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+    display: none;
+    z-index: 10;  /* Garantir que o dano seja exibido acima de outros elementos */
+}
+
+#heal-display {
+    position: absolute;
+    font-size: 24px;
+    color: green;
+    font-weight: bold;
+    display: none;
+    z-index: 10;  /* Garantir que o dano seja exibido acima de outros elementos */
+}
+
+
+/* Estilo para a sacudida rápida */
+@keyframes shake {
+    0% {
+        transform: translateX(0); /* Posição inicial */
+    }
+    25% {
+        transform: translateX(-15px); /* Move para a esquerda */
+    }
+    50% {
+        transform: translateX(15px); /* Move para a direita */
+    }
+    75% {
+        transform: translateX(-15px); /* Move para a esquerda novamente */
+    }
+    100% {
+        transform: translateX(0); /* Volta à posição inicial */
+    }
+}
+
+.shake {
+    animation: shake 0.2s ease-out;
+    animation-iteration-count: 1;
+}
+
+
+/* Estilo para a mensagem de habilidade */
+#skill-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+/* Animação para exibir a mensagem */
+.show-message {
+    opacity: 1;
+}
+
+.hide-message {
+    opacity: 0;
+}
+
+
+
+/* Estilo para a mensagem de turno */
+#turn-message {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+/* Animação para exibir a mensagem */
+.show-turn-message {
+    opacity: 1;
+}
+
+.hide-turn-message {
+    opacity: 0;
+}
+
+
+/* Estilo para a tela de Game Over */
+#game-over-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com opacidade */
+    color: red;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#game-over-text {
+    font-size: 5rem;  /* Tamanho maior para o texto */
+    font-family: 'Creepster', sans-serif; /* Fonte assustadora */
+    text-align: center;
+    color: red;
+    text-shadow: none; /* Removendo a sombra de texto */
+    -webkit-background-clip: text; /* Deixa o fundo "clipado" no texto */
+    background-color: black; /* Adiciona o fundo preto ao texto */
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase; /* Texto em caixa alta */
+    font-weight: bold;
+    outline: 4px solid white; /* Adicionando contorno branco ao texto */
+}
+
+#restart-button {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restart-button:hover {
+    background-color: red;
+}
+
+/* Classe oculta para esconder a tela de Game Over */
+.hidden {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}

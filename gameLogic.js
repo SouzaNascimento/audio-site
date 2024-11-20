@@ -7,6 +7,8 @@ const soundEffects = {
     "iceblast": new Audio('assets/iceBlast.mp3'),
 	"lightningbolt": new Audio('assets/lightningbolt.mp3'),
     "heal": new Audio('assets/heal.mp3'),
+	"frontpunch": new Audio('assets/frontpunch.mp3'),
+	"aquaboom": new Audio('assets/aquaboom.mp3'),
 	"endgame": new Audio('assets/endGame.mp3'),
 };
 
@@ -17,8 +19,48 @@ const enemyConfig = {
         { name: "Heal", priority: 1, weight: 0.5, condition: () => enemyHealth <= 30 && enemyMana >= attacks.heal.manaCost },
         { name: "Lightning Bolt", priority: 2, weight: 0.3, condition: () => enemyMana >= attacks.lightningBolt.manaCost },
         { name: "Ice Blast", priority: 3, weight: 0.15, condition: () => enemyMana >= attacks.iceBlast.manaCost },
-        { name: "Fire Ball", priority: 4, weight: 0.05, condition: () => enemyMana >= attacks.fireBall.manaCost }
+		{ name: "Front Punch", priority: 4, weight: 0.20, condition: () => enemyMana <= attacks.fireBall.manaCost },
+        { name: "Fire Ball", priority: 5, weight: 0.05, condition: () => enemyMana >= attacks.fireBall.manaCost }
     ]
+};
+
+const attacks = {
+    fireBall: {
+        name: "Fire Ball",
+        damage: 15,
+        manaCost: 20,
+        element: "fire",
+    },
+    iceBlast: {
+        name: "Ice Blast",
+        damage: 12,
+        manaCost: 15,
+        element: "ice",
+    },
+    lightningBolt: {
+        name: "Lightning Bolt",
+        damage: 20,
+        manaCost: 30,
+        element: "electricity",
+    },
+	aquaBoom: {
+        name: "Aqua Boom",
+        damage: 35,
+        manaCost: 55,
+        element: "water",
+    },
+	frontPunch: {
+        name: "Front Punch",
+        damage: 5,
+        manaCost: 0,
+        element: "water",
+    },
+    heal: {
+        name: "Heal",
+        damage: -20,  // Dano negativo, ou seja, recupera vida
+        manaCost: 15,
+        element: "heal",
+    }
 };
 
 function chooseEnemyAttack() {
@@ -76,32 +118,7 @@ let enemyMana = 100;
 let currentTurn = "player"; // Inicia com o turno do jogador
  
 
-const attacks = {
-    fireBall: {
-        name: "Fire Ball",
-        damage: 30,
-        manaCost: 0,
-        element: "fire",
-    },
-    iceBlast: {
-        name: "Ice Blast",
-        damage: 25,
-        manaCost: 15,
-        element: "ice",
-    },
-    lightningBolt: {
-        name: "Lightning Bolt",
-        damage: 40,
-        manaCost: 30,
-        element: "electricity",
-    },
-    heal: {
-        name: "Heal",
-        damage: -20,  // Dano negativo, ou seja, recupera vida
-        manaCost: 25,
-        element: "heal",
-    }
-};
+
 
 // Função para atualizar as barras de status
 function updateBar(barId, percentage) {

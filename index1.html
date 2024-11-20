@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reprodução de Áudio</title>
+    <style>
+        /* Resetando margens e padding para garantir layout consistente */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Cor de fundo preta */
+        }
+        /* Estilo para o botão gigante */
+        #playButton {
+            width: 100vw; /* 100% da largura da tela */
+            height: 100vh; /* 100% da altura da tela */
+            background-color: red; /* Cor de fundo vermelha */
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        /* Efeito de hover (quando o usuário passa o mouse ou toca no botão) */
+        #playButton:hover {
+            background-color: darkred;
+        }
+        /* Ajustando a imagem para que ela fique no centro do botão */
+        #playButton img {
+            width: 200px; /* Tamanho da imagem */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Áudio que será tocado -->
+    <audio id="audio" src="https://raw.githubusercontent.com/souzanascimento/audio-site/main/Recording.mp3"></audio>
+    <!-- Botão gigante de play com a imagem -->
+    <button id="playButton">
+        <img src="frame.png" alt="Ícone de Play" />
+    </button>
+    <script>
+        // Função para reproduzir o áudio ao clicar no botão
+        document.getElementById("playButton").onclick = function() {
+            var audio = document.getElementById("audio");
+            audio.play().catch(function(error) {
+                console.log('Erro ao tentar reproduzir o áudio:', error);
+            });
+        };
+    </script>
+</body>
+</html>

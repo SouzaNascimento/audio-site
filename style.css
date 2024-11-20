@@ -5,7 +5,9 @@ body {
     align-items: center;
     background-color: #000;
 }
-
+#player, #enemy {
+    pointer-events: none;
+}
 #game-container {
     position: relative;
     width: 100vw;

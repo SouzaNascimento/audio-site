@@ -1,15 +1,15 @@
-const backgroundMusic = new Audio('assets/background-music.mp3');
+const backgroundMusic = new Audio('assets/sound/background-music.mp3');
 backgroundMusic.loop = true; // Ativar looping
 backgroundMusic.volume = 0.5; // Ajustar volume (0.0 a 1.0)
 
 const soundEffects = {
-    "fireball": new Audio('assets/fireball.mp3'),
-    "iceblast": new Audio('assets/iceBlast.mp3'),
-	"lightningbolt": new Audio('assets/lightningbolt.mp3'),
-    "heal": new Audio('assets/heal.mp3'),
-	"frontpunch": new Audio('assets/frontpunch.mp3'),
-	"aquaboom": new Audio('assets/aquaboom.mp3'),
-	"endgame": new Audio('assets/endGame.mp3'),
+    "fireball": new Audio('assets/sound/fireball.mp3'),
+    "iceblast": new Audio('assets/sound/iceblast.mp3'),
+	"lightningbolt": new Audio('assets/sound/lightningbolt.mp3'),
+    "heal": new Audio('assets/sound/heal.mp3'),
+	"frontalpunch": new Audio('assets/sound/frontalpunch.mp3'),
+	"aquaboom": new Audio('assets/sound/aquaboom.mp3'),
+	"endgame": new Audio('assets/sound/endGame.mp3'),
 };
 
 
@@ -19,7 +19,7 @@ const enemyConfig = {
         { name: "Heal", priority: 1, weight: 0.5, condition: () => enemyHealth <= 30 && enemyMana >= attacks.heal.manaCost },
         { name: "Lightning Bolt", priority: 2, weight: 0.3, condition: () => enemyMana >= attacks.lightningBolt.manaCost },
         { name: "Ice Blast", priority: 3, weight: 0.15, condition: () => enemyMana >= attacks.iceBlast.manaCost },
-		{ name: "Front Punch", priority: 4, weight: 0.20, condition: () => enemyMana <= attacks.fireBall.manaCost },
+		{ name: "Frontal Punch", priority: 4, weight: 0.20, condition: () => enemyMana <= attacks.fireBall.manaCost },
         { name: "Fire Ball", priority: 5, weight: 0.05, condition: () => enemyMana >= attacks.fireBall.manaCost }
     ]
 };
@@ -28,29 +28,29 @@ const attacks = {
     fireBall: {
         name: "Fire Ball",
         damage: 15,
-        manaCost: 20,
+        manaCost: 17,
         element: "fire",
     },
     iceBlast: {
         name: "Ice Blast",
         damage: 12,
-        manaCost: 15,
+        manaCost: 12,
         element: "ice",
     },
     lightningBolt: {
         name: "Lightning Bolt",
         damage: 20,
-        manaCost: 30,
+        manaCost: 25,
         element: "electricity",
     },
 	aquaBoom: {
         name: "Aqua Boom",
         damage: 35,
-        manaCost: 55,
+        manaCost: 40,
         element: "water",
     },
-	frontPunch: {
-        name: "Front Punch",
+	frontalPunch: {
+        name: "Frontal Punch",
         damage: 5,
         manaCost: 0,
         element: "water",
